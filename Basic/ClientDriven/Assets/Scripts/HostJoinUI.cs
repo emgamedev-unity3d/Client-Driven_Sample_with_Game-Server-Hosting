@@ -23,10 +23,16 @@ public class HostJoinUI : MonoBehaviour
     
     Button m_ClientButton;
 
+    Button m_FindMatchButton;
+
     TextField m_IPAddressTextField;
     
     TextField m_PortTextField;
-    
+
+    float m_timeInQueue;
+    bool m_isMatchmaking;
+    bool m_isCancelling;
+
     void Awake()
     {
         m_MainMenuRootVisualElement = m_MainMenuUIDocument.rootVisualElement;
@@ -35,12 +41,35 @@ public class HostJoinUI : MonoBehaviour
         m_HostButton = m_MainMenuRootVisualElement.Query<Button>("HostButton");
         m_ClientButton = m_MainMenuRootVisualElement.Query<Button>("ClientButton");
         m_ServerButton = m_MainMenuRootVisualElement.Query<Button>("ServerButton");
+        m_FindMatchButton = m_MainMenuRootVisualElement.Query<Button>("FindMatchButton");
+
         m_IPAddressTextField = m_MainMenuRootVisualElement.Query<TextField>("IPAddressField");
         m_PortTextField = m_MainMenuRootVisualElement.Query<TextField>("PortField");
         
         m_HostButton.clickable.clickedWithEventInfo += StartHost;
         m_ServerButton.clickable.clickedWithEventInfo += StartServer;
         m_ClientButton.clickable.clickedWithEventInfo += StartClient;
+        m_FindMatchButton.clickable.clicked += FindMatch;
+    }
+
+    void Start()
+    {
+        ToggleMainMenuUI(true);
+        ToggleInGameUI(false);
+    }
+
+    private void Update()
+    {
+        if (m_isMatchmaking && !m_isCancelling)
+        {
+            m_timeInQueue += Time.deltaTime;
+            //TimeSpan ts = TimeSpan.FromSeconds(timeInQueue);
+            //queueTimerText.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+        }
+        else
+        {
+            //queueTimerText.text = string.Empty;
+        }
     }
 
     void OnDestroy()
@@ -48,12 +77,6 @@ public class HostJoinUI : MonoBehaviour
         m_HostButton.clickable.clickedWithEventInfo -= StartHost;
         m_ServerButton.clickable.clickedWithEventInfo -= StartServer;
         m_ClientButton.clickable.clickedWithEventInfo -= StartClient;
-    }
-
-    void Start()
-    {
-        ToggleMainMenuUI(true);
-        ToggleInGameUI(false);
     }
 
     void StartHost(EventBase obj)
@@ -87,6 +110,11 @@ public class HostJoinUI : MonoBehaviour
             ToggleInGameUI(true);
             ToggleMainMenuUI(false);
         }
+    }
+
+    async void FindMatch()
+    {
+
     }
 
     void ToggleMainMenuUI(bool isVisible)
