@@ -114,7 +114,6 @@ public class HostJoinUI : MonoBehaviour
 
     async void FindMatch()
     {
-
     }
 
     void ToggleMainMenuUI(bool isVisible)
