@@ -9,7 +9,7 @@ public class ServerGameManager : IDisposable
     public MatchplayNetworkServer NetworkServer { get; private set; }
 
     private MultiplayAllocationService multiplayAllocationService;
-    private string ConnectionString => $"{serverIP}:{serverPort}";
+
     private string serverIP = "0.0.0.0";
     private int serverPort = 7777;
     private int queryPort = 7787;
@@ -29,7 +29,7 @@ public class ServerGameManager : IDisposable
         this.serverIP = serverIP;
         this.serverPort = serverPort;
         this.queryPort = serverQPort;
-        //NetworkServer = new MatchplayNetworkServer(manager);
+        NetworkServer = new MatchplayNetworkServer(manager);
         multiplayAllocationService = new MultiplayAllocationService();
         serverName = $"Server: {Guid.NewGuid()}";
     }
@@ -122,5 +122,16 @@ public class ServerGameManager : IDisposable
 
     public void Dispose()
     {
+        if (startedServices)
+        {
+            if (NetworkServer.OnPlayerJoined != null)
+                NetworkServer.OnPlayerJoined -= UserJoinedServer;
+
+            if (NetworkServer.OnPlayerLeft != null)
+                NetworkServer.OnPlayerLeft -= UserLeft;
+        }
+
+        multiplayAllocationService?.Dispose();
+        NetworkServer?.Dispose();
     }
 }
