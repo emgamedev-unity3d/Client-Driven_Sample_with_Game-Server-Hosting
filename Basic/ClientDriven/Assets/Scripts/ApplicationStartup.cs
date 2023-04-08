@@ -10,6 +10,11 @@ public class ApplicationStartup : MonoBehaviour
     [SerializeField]
     private GameObject m_serverManager;
 
+    private void Awake()
+    {
+        
+    }
+
     private async void Start()
     {
         ApplicationStartupData.InitializeApplicationData();
@@ -23,18 +28,20 @@ public class ApplicationStartup : MonoBehaviour
         {
             m_clientManager.SetActive(false);
 
-            m_clientManager.TryGetComponent(out ServerSingleton serverSingleton);
+            m_serverManager.TryGetComponent(out ServerSingleton serverSingleton);
 
             await serverSingleton.StartGameServerAsync();
 
             return;
         }
 
-        m_serverManager.SetActive(false);
-
         Debug.Log(
             @$"Starting client build, Graphics device type is {SystemInfo.graphicsDeviceType}");
 
-        // TODO: start additional client data
+        m_serverManager.SetActive(false);
+
+        m_clientManager.TryGetComponent(out ClientSingleton clientSingleton);
+
+        await clientSingleton.StartGameClientAsync();
     }
 }

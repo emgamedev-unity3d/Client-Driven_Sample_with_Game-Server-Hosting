@@ -24,14 +24,13 @@ public class HostJoinUI : MonoBehaviour
     Button m_ClientButton;
 
     Button m_FindMatchButton;
+    Label m_queueStatusLabel;
 
     TextField m_IPAddressTextField;
     
     TextField m_PortTextField;
 
-    float m_timeInQueue;
-    bool m_isMatchmaking;
-    bool m_isCancelling;
+    float m_timeInQueue = 0f;
 
     void Awake()
     {
@@ -42,6 +41,7 @@ public class HostJoinUI : MonoBehaviour
         m_ClientButton = m_MainMenuRootVisualElement.Query<Button>("ClientButton");
         m_ServerButton = m_MainMenuRootVisualElement.Query<Button>("ServerButton");
         m_FindMatchButton = m_MainMenuRootVisualElement.Query<Button>("FindMatchButton");
+        m_queueStatusLabel = m_MainMenuRootVisualElement.Query<Label>("queueStatusLabel");
 
         m_IPAddressTextField = m_MainMenuRootVisualElement.Query<TextField>("IPAddressField");
         m_PortTextField = m_MainMenuRootVisualElement.Query<TextField>("PortField");
@@ -60,15 +60,19 @@ public class HostJoinUI : MonoBehaviour
 
     private void Update()
     {
-        if (m_isMatchmaking && !m_isCancelling)
+        if (ClientSingleton.Instance == null)
+            return;
+
+        if (ClientSingleton.Instance.IsMatchmaking &&
+            !ClientSingleton.Instance.IsCanceling)
         {
             m_timeInQueue += Time.deltaTime;
-            //TimeSpan ts = TimeSpan.FromSeconds(timeInQueue);
-            //queueTimerText.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+            TimeSpan ts = TimeSpan.FromSeconds(m_timeInQueue);
+            m_queueStatusLabel.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
         }
         else
         {
-            //queueTimerText.text = string.Empty;
+            m_queueStatusLabel.text = string.Empty;
         }
     }
 
@@ -93,6 +97,7 @@ public class HostJoinUI : MonoBehaviour
     void StartClient(EventBase obj)
     {
         SetUtpConnectionData();
+
         var result = NetworkManager.Singleton.StartClient();
         if (result)
         {
@@ -114,16 +119,70 @@ public class HostJoinUI : MonoBehaviour
 
     async void FindMatch()
     {
+        if (ClientSingleton.Instance.IsCanceling)
+            return;
+
+        if(ClientSingleton.Instance.IsMatchmaking)
+        {
+            m_FindMatchButton.text = "Cancelling";
+
+            await ClientSingleton.Instance.CancelMatchmakingAsync();
+
+            m_FindMatchButton.text = "Find Match";
+            return;
+        }
+
+        _ = ClientSingleton.Instance.StartMatchmakingAsync(OnMatchMade);
+
+        m_FindMatchButton.text = "Cancel";
+        //queueStatusText.text = "Searching...";
+        m_timeInQueue = 0f;
+    }
+
+    private void OnMatchMade(MatchmakerPollingResult result)
+    {
+        switch (result)
+        {
+            case MatchmakerPollingResult.Success:
+                m_queueStatusLabel.text = "Connecting";
+                ToggleInGameUI(true);
+                ToggleMainMenuUI(false);
+                break;
+
+            case MatchmakerPollingResult.TicketCreationError:
+                m_queueStatusLabel.text = "TicketCreationError";
+                break;
+
+            case MatchmakerPollingResult.TicketCancellationError:
+                m_queueStatusLabel.text = "TicketCancellationError";
+                break;
+
+            case MatchmakerPollingResult.TicketRetrievalError:
+                m_queueStatusLabel.text = "TicketRetrievalError";
+                break;
+
+            case MatchmakerPollingResult.MatchAssignmentError:
+                m_queueStatusLabel.text = "MatchAssignmentError";
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(result), result, null);
+        }
+
+        ToggleInGameUI(true);
+        ToggleMainMenuUI(false);
     }
 
     void ToggleMainMenuUI(bool isVisible)
     {
-        m_MainMenuRootVisualElement.style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        m_MainMenuRootVisualElement.style.display = isVisible ?
+            DisplayStyle.Flex : DisplayStyle.None;
     }
     
     void ToggleInGameUI(bool isVisible)
     {
-        m_InGameRootVisualElement.style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        m_InGameRootVisualElement.style.display = isVisible ? 
+            DisplayStyle.Flex : DisplayStyle.None;
     }
 
     void SetUtpConnectionData()

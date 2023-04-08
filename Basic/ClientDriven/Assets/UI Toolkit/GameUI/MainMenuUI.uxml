@@ -23,6 +23,7 @@
                         <ui:Button text="Find Match..." display-tooltip-when-elided="true" name="FindMatchButton" tabindex="1" focusable="false" class="button-style" />
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:Label display-tooltip-when-elided="true" name="queueStatusLabel" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

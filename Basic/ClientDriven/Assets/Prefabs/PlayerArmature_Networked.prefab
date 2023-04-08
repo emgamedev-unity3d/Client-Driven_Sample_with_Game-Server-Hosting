@@ -201,7 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c521a646e08a84279a7bcf9c775080a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ClientPlayerMove: {fileID: 5667156634780145037}
   isObjectPickedUp:
     m_InternalValue: 0
   m_LocalHeldPosition: {x: 0, y: 2.85, z: 0}

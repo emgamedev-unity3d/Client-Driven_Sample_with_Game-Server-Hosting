@@ -8,13 +8,13 @@ public class ServerGameManager : IDisposable
 {
     public MatchplayNetworkServer NetworkServer { get; private set; }
 
-    private MultiplayAllocationService multiplayAllocationService;
+    private readonly MultiplayAllocationService multiplayAllocationService;
 
     private string serverIP = "0.0.0.0";
     private int serverPort = 7777;
     private int queryPort = 7787;
     private string serverName = "Matchplay Server";
-    private bool startedServices;
+    private bool m_servicesAreStarted;
 
     private int playerCount;
 
@@ -50,9 +50,11 @@ public class ServerGameManager : IDisposable
                 Debug.Log($"Got payload: {matchmakerPayload}");
 
                 SetAllocationData();
+
                 NetworkServer.OnPlayerJoined += UserJoinedServer;
                 NetworkServer.OnPlayerLeft += UserLeft;
-                startedServices = true;
+
+                m_servicesAreStarted = true;
             }
             else
             {
@@ -122,7 +124,7 @@ public class ServerGameManager : IDisposable
 
     public void Dispose()
     {
-        if (startedServices)
+        if (m_servicesAreStarted)
         {
             if (NetworkServer.OnPlayerJoined != null)
                 NetworkServer.OnPlayerJoined -= UserJoinedServer;

@@ -6,9 +6,10 @@ using Unity.Services.Matchmaker;
 using Unity.Services.Matchmaker.Models;
 using UnityEngine;
 
-public class MatchmakingManager
+public class MatchmakingMatchmaker : IDisposable
 {
-    public bool IsMatchmaking { get; private set; }
+    public bool IsMatchmaking { get; private set; } = false;
+    public bool IsCanceling { get; private set; } = false;
 
     private CancellationTokenSource m_cancelToken;
     private string m_lastUsedTicket;
@@ -29,6 +30,8 @@ public class MatchmakingManager
 
         try
         {
+            IsMatchmaking = true;
+
             var createResult = 
                 await MatchmakerService.Instance.CreateTicketAsync(
                     players,
@@ -98,6 +101,7 @@ public class MatchmakingManager
             return;
 
         IsMatchmaking = false;
+        IsCanceling = true;
 
         if (m_cancelToken.Token.CanBeCanceled)
             m_cancelToken.Cancel();
@@ -108,6 +112,8 @@ public class MatchmakingManager
         Debug.Log($"Cancelling {m_lastUsedTicket}");
 
         await MatchmakerService.Instance.DeleteTicketAsync(m_lastUsedTicket);
+
+        IsCanceling = false;
     }
 
     private MatchmakingResult ReturnMatchmakingResult(
@@ -143,5 +149,12 @@ public class MatchmakingManager
             result = resultErrorType,
             resultMessage = message
         };
+    }
+
+    public void Dispose()
+    {
+        _ = CancelMatchmakingAsync();
+
+        m_cancelToken?.Dispose();
     }
 }

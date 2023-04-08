@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Unity.Netcode;
 
-public class ServerSingleton : SingletonPersistent<ServerSingleton>
+public class ServerSingleton : Singleton<ServerSingleton>
 {
     private ServerGameManager m_serverGameManager;
 
