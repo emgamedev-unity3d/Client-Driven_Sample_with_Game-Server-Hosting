@@ -168,9 +168,6 @@ public class HostJoinUI : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(result), result, null);
         }
-
-        ToggleInGameUI(true);
-        ToggleMainMenuUI(false);
     }
 
     void ToggleMainMenuUI(bool isVisible)
