@@ -135,7 +135,7 @@ public class HostJoinUI : MonoBehaviour
         _ = ClientSingleton.Instance.StartMatchmakingAsync(OnMatchMade);
 
         m_FindMatchButton.text = "Cancel";
-        //queueStatusText.text = "Searching...";
+        m_queueStatusLabel.text = "Searching...";
         m_timeInQueue = 0f;
     }
 
