@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.dolby.millicast": "https://github.com/millicast/millicast-unity-sdk.git",
     "com.unity.cinemachine": "2.8.9",
     "com.unity.ide.rider": "3.0.18",
     "com.unity.ide.visualstudio": "2.0.17",

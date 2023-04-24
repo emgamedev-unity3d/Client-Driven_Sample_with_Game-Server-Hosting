@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "com.dolby.millicast": {
+      "version": "https://github.com/millicast/millicast-unity-sdk.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.webrtc": "3.0.0-pre.3",
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.unity.inputsystem": "1.0.2"
+      },
+      "hash": "ad6e61f323ff383b9d362361881fa67c655c6c3b"
+    },
     "com.unity.burst": {
       "version": "1.8.2",
       "depth": 1,
@@ -367,6 +378,17 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.webrtc": {
+      "version": "3.0.0-pre.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.modules.audio": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.veriorpies.parrelsync": {
       "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync#bb3d5067e49e403d8b8ba15c036d313b4dd2c696",
