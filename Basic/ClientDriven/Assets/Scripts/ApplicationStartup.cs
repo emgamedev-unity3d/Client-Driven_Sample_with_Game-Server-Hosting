@@ -1,4 +1,3 @@
-using Unity.Netcode;
 using Unity.Services.Core;
 using UnityEngine;
 
@@ -9,11 +8,6 @@ public class ApplicationStartup : MonoBehaviour
 
     [SerializeField]
     private GameObject m_serverManager;
-
-    private void Awake()
-    {
-        
-    }
 
     private async void Start()
     {

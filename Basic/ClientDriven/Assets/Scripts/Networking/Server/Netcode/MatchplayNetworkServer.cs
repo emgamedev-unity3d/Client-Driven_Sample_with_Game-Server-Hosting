@@ -88,6 +88,7 @@ public class MatchplayNetworkServer : IDisposable
     private async void WaitToDisconnect(ulong clientId)
     {
         await Task.Delay(500);
+
         m_networkManager.DisconnectClient(clientId);
     }
 

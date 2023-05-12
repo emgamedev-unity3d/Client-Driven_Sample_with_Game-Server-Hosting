@@ -22,9 +22,9 @@ public class MultiplayAllocationService : IDisposable
             multiplayService = MultiplayService.Instance;
             serverCheckCancel = new CancellationTokenSource();
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            Debug.LogWarning($"Error creating Multiplay allocation service.\n{ex}");
+            Debug.LogWarning($"Error creating Multiplay allocation service.\n{exception}");
         }
     }
 
@@ -71,9 +71,14 @@ public class MultiplayAllocationService : IDisposable
 
     private async Task<MatchmakingResults> GetMatchmakerAllocationPayloadAsync()
     {
-        var payloadAllocation = await MultiplayService.Instance.GetPayloadAllocationFromJsonAs<MatchmakingResults>();
+        var payloadAllocation = 
+            await MultiplayService.Instance.GetPayloadAllocationFromJsonAs<MatchmakingResults>();
+
         string modelAsJson = JsonConvert.SerializeObject(payloadAllocation, Formatting.Indented);
-        Debug.Log(nameof(GetMatchmakerAllocationPayloadAsync) + ":" + Environment.NewLine + modelAsJson);
+
+        Debug.Log(
+            nameof(GetMatchmakerAllocationPayloadAsync) + ":" + Environment.NewLine + modelAsJson);
+
         return payloadAllocation;
     }
 
@@ -81,16 +86,24 @@ public class MultiplayAllocationService : IDisposable
     {
         Debug.Log($"OnAllocation: {allocation.AllocationId}");
 
-        if (string.IsNullOrEmpty(allocation.AllocationId)) { return; }
+        if (string.IsNullOrEmpty(allocation.AllocationId))
+        { 
+            return;
+        }
 
         allocationId = allocation.AllocationId;
     }
 
     public async Task BeginServerCheck()
     {
-        if (multiplayService == null) { return; }
+        if (multiplayService == null)
+        { 
+            return;
+        }
 
-        serverCheckManager = await multiplayService.StartServerQueryHandlerAsync((ushort)20, "", "", "0", "");
+        serverCheckManager = 
+            await multiplayService.StartServerQueryHandlerAsync(
+                (ushort)20, "", "", "0", "");
 
 #pragma warning disable 4014
         ServerCheckLoop(serverCheckCancel.Token);
@@ -126,6 +139,7 @@ public class MultiplayAllocationService : IDisposable
         while (!cancellationToken.IsCancellationRequested)
         {
             serverCheckManager.UpdateServerCheck();
+
             await Task.Delay(100);
         }
     }
@@ -133,7 +147,7 @@ public class MultiplayAllocationService : IDisposable
     private void OnMultiplayDeAllocation(MultiplayDeallocation deallocation)
     {
         Debug.Log(
-                $"Multiplay Deallocated : ID: {deallocation.AllocationId}\nEvent: {deallocation.EventId}\nServer{deallocation.ServerId}");
+            $"Multiplay Deallocated : ID: {deallocation.AllocationId}\nEvent: {deallocation.EventId}\nServer{deallocation.ServerId}");
     }
 
     private void OnMultiplayError(MultiplayError error)
