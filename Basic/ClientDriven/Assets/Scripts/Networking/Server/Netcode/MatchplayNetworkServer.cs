@@ -23,7 +23,6 @@ public class MatchplayNetworkServer : IDisposable
     private NetworkManager m_networkManager;
 
     private const int k_maxConnectionPayload = 1024;
-    private bool m_gameHasStarted;
 
     public MatchplayNetworkServer(NetworkManager networkManager)
     {
@@ -50,7 +49,8 @@ public class MatchplayNetworkServer : IDisposable
         NetworkManager.ConnectionApprovalRequest request,
         NetworkManager.ConnectionApprovalResponse response)
     {
-        if (request.Payload.Length > k_maxConnectionPayload || m_gameHasStarted)
+        if (request.Payload.Length > k_maxConnectionPayload ||
+            m_networkManager.ConnectedClients.Count > 3)
         {
             response.Approved = false;
             response.CreatePlayerObject = false;

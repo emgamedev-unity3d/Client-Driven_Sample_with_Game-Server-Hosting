@@ -30,7 +30,8 @@ public class MultiplayAllocationService : IDisposable
 
     public async Task<MatchmakingResults> SubscribeAndAwaitMatchmakerAllocation()
     {
-        if (multiplayService == null) { return null; }
+        if (multiplayService == null)
+            return null;
 
         allocationId = null;
         serverCallbacks = new MultiplayEventCallbacks();
