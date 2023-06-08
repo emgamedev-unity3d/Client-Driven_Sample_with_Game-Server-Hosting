@@ -5,9 +5,9 @@ public class MultiSource : MonoBehaviour
 {
     public string multiSourceName = "camOne";
 
-    private McPublisher publisher;
+    public McPublisher publisher;
 
-    private void Start()
+    public void Start()
     {
         // Get the existing publisher from the McPublisher component
         publisher = GetComponent<McPublisher>();
