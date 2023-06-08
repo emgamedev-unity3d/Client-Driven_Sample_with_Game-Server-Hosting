@@ -14,7 +14,7 @@ public class HostJoinUI : MonoBehaviour
     UIDocument m_InGameUIDocument;
 
     VisualElement m_MainMenuRootVisualElement;
-    
+
     VisualElement m_InGameRootVisualElement;
     
     Button m_HostButton;
@@ -81,6 +81,7 @@ public class HostJoinUI : MonoBehaviour
         m_HostButton.clickable.clickedWithEventInfo -= StartHost;
         m_ServerButton.clickable.clickedWithEventInfo -= StartServer;
         m_ClientButton.clickable.clickedWithEventInfo -= StartClient;
+        m_FindMatchButton.clickable.clicked -= FindMatch;
     }
 
     void StartHost(EventBase obj)
@@ -109,6 +110,7 @@ public class HostJoinUI : MonoBehaviour
     void StartServer(EventBase obj)
     {
         SetUtpConnectionData();
+
         var result = NetworkManager.Singleton.StartServer();
         if (result)
         {

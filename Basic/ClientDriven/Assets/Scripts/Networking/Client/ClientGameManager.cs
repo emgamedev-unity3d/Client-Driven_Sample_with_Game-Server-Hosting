@@ -27,14 +27,14 @@ public class ClientGameManager : IDisposable
             0);
     }
 
-    public async Task StartGameClientAsync() 
+    public async Task StartGameClientAsync()
     {
         m_networkClient = new MatchplayNetworkClient();
         m_matchmaker = new MatchmakingMatchmaker();
 
         var authenticationState = await AuthenticationWrapper.DoAuthentication();
 
-        string authId = string.Empty;
+        string authId;
         if (authenticationState == AuthenticationState.Authenticated)
         {
             authId = AuthenticationWrapper.PlayerID();

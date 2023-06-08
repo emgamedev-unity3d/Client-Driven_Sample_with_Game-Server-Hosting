@@ -18,7 +18,7 @@ public class ServerGameManager : IDisposable
 
     private int playerCount;
 
-    private const int k_multiplayServiceTimeout = 20000;
+    private const int k_multiplayServiceTimeoutMS = 20000;
 
     public ServerGameManager(
         string serverIP,
@@ -43,7 +43,7 @@ public class ServerGameManager : IDisposable
         try
         {
             MatchmakingResults matchmakerPayload = 
-                await GetMatchmakerPayload(k_multiplayServiceTimeout);
+                await GetMatchmakerPayload(k_multiplayServiceTimeoutMS);
 
             if (matchmakerPayload != null)
             {
@@ -75,15 +75,22 @@ public class ServerGameManager : IDisposable
 
     private async Task<MatchmakingResults> GetMatchmakerPayload(int timeout)
     {
-        if (multiplayAllocationService == null) { return null; }
+        if (multiplayAllocationService == null)
+        { 
+            return null;
+        }
 
-        var matchmakerPayloadTask = multiplayAllocationService.SubscribeAndAwaitMatchmakerAllocation();
+        var matchmakerPayloadTask =
+            multiplayAllocationService.SubscribeAndAwaitMatchmakerAllocation();
 
-        if (await Task.WhenAny(matchmakerPayloadTask, Task.Delay(timeout)) == matchmakerPayloadTask)
+        //return the result of the payload task if done before task timeout delay
+        if (await Task.WhenAny(matchmakerPayloadTask, Task.Delay(timeout))
+                == matchmakerPayloadTask)
         {
             return matchmakerPayloadTask.Result;
         }
 
+        // if we reached here, the payload task timed out
         return null;
     }
 
