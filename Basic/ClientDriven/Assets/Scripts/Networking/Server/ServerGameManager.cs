@@ -42,8 +42,8 @@ public class ServerGameManager : IDisposable
 
         try
         {
-            MatchmakingResults matchmakerPayload = 
-                await GetMatchmakerPayload(k_multiplayServiceTimeoutMS);
+            MatchmakingResults matchmakerPayload = new MatchmakingResults();
+                //await GetMatchmakerPayload(k_multiplayServiceTimeoutMS);
 
             if (matchmakerPayload != null)
             {
