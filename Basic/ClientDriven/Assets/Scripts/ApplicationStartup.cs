@@ -20,6 +20,8 @@ public class ApplicationStartup : MonoBehaviour
 
         if (isServerBuild)
         {
+            Debug.Log($"Starting server build, no graphics device present");
+
             m_clientManager.SetActive(false);
 
             m_serverManager.TryGetComponent(out ServerSingleton serverSingleton);
