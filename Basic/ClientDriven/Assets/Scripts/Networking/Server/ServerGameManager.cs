@@ -42,8 +42,12 @@ public class ServerGameManager : IDisposable
 
         try
         {
+            // Note: ATM the sample is not using payload information, so no problem in passing
+            //  empty struct
             MatchmakingResults matchmakerPayload = new MatchmakingResults();
-                //await GetMatchmakerPayload(k_multiplayServiceTimeoutMS);
+                //TODO: debug and find out what's causing possible race condition which
+                //  can lead to a server-side crash
+                // = await GetMatchmakerPayload(k_multiplayServiceTimeoutMS);
 
             if (matchmakerPayload != null)
             {
