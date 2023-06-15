@@ -1,36 +1,21 @@
-![Banner](Resources/bitesize_banner.png)
+![Banner](Basic/ClientDriven/Resources/clientdriven_banner.png)
 <br><br>
-# Netcode for GameObjects Bitesize Samples
+# Client-Driven Bitesize Sample w/ Game Server Hosting & Matchmaker
 
-[![UnityVersion](https://img.shields.io/badge/Unity%20Version:-2021.3%20LTS-57b9d3.svg?logo=unity&color=2196F3)](https://unity.com/releases/editor/qa/lts-releases#:~:text=February%2014%2C%202023-,LTS%20Release,2021.3.18f1,-Released%3A%20February)
-[![NetcodeVersion](https://img.shields.io/badge/Netcode%20Version:-1.2.0-57b9d3.svg?logo=unity&color=2196F3)](https://docs-multiplayer.unity3d.com/netcode/current/about)
-[![LatestRelease](https://img.shields.io/badge/Latest%20%20Github%20Release:-v1.2.1-57b9d3.svg?logo=github&color=brightgreen)](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/releases/tag/v1.2.1)
-<br><br>
-
-This repository contains a collection of bitesize sample projects and games that showcase different techniques
-which can help you get started with development of a multiplayer 
-project using [Netcode for GameObjects](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects).
+[![UnityVersion](https://img.shields.io/badge/Unity%20Version:-2021.3%20LTS-57b9d3.svg?logo=unity&color=2196F3)](https://unity.com/releases/editor/qa/lts-releases#:~:text=February%2014%2C%202023-,LTS%20Release,2021.3.24f1,-Released%3A%20February)
+[![NetcodeVersion](https://img.shields.io/badge/Netcode%20Version:-1.3.1-57b9d3.svg?logo=unity&color=2196F3)](https://docs-multiplayer.unity3d.com/netcode/current/about)
 <br><br>
 
-# Bitesize Samples Overview
+This repository is a fork of Unity's [bitesize samples repository](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize), which are built with our netcode solution, [Netcode for GameObjects](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects). This copy is a fun project to help us answer the question of what challenges does a developer face, when they'd like to implementing Game Server Hosting(Multiplay) and Matchmaker, to their multiplayer game made with Netcode for GameObjects.
 
-### 2D Space Shooter Overview
+The code you'll see in this sample is based on Unity's own [Matchplay Sample](https://docs.unity.com/matchmaker/en/manual/matchmaker-and-multiplay-sample), which demonstrates how to create a Matchmake button, a basic networked client-server game with a matchmaking feature from end-to-end using the Unity Engine and Cloud Services SDK.
 
-The [2D Space Shooter Sample](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/tree/main/Basic/2DSpaceShooter) was a UNet sample that has been converted over to NGO. Check it out to learn more about physics movement and status effects using Netcode `NetworkVariables` and `ObjectPooling`.
-<br><br>
+**PLEASE NOTE:** This is a basic sample, and does not cover advanced features of Matchmaking and Server Hosting.
 
-### Invaders Overview
+<br>
 
-The [Invaders Sample](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/tree/main/Basic/Invaders) was a UNet sample that has been converted over to NGO. Learn more about game flow, modes, unconventional networked movement, and using a shared timer in this sample.
-<br><br>
-
-### Client Driven Overview
+## Client Driven Sample Overview
 See the [Client Driven Sample](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/tree/main/Basic/ClientDriven) to learn about client driven movements, networked physics, spawning vs in-scene placed `NetworkObjects`, and `NetworkObject` parenting.
-<br><br>
-
-### Dynamic Addressables Network Prefabs Overview ![](https://img.shields.io/badge/New!-brightgreen)
-
-Check out the new [Dynamic Addressables Network Prefabs Sample](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/tree/main/Basic/DynamicAddressablesNetworkPrefabs) to learn more about the dynamic prefab system, which allows us to add new spawnable network prefabs at runtime.
 <br><br>
 
 ---
@@ -42,9 +27,9 @@ Check out the new [Dynamic Addressables Network Prefabs Sample](https://github.c
 - ### [Troubleshooting](#troubleshooting-1)
   - [Bugs](#bugs)
   - [Documentation](#documentation)
-- ### [Contributing](#contributing-1)
+- ### [Contributing to the Bitesize Samples](#contributing-1)
 - ### [Community](#community-1)
-- ### [Feedback Form](#feedback)
+- ### [Feedback Form for Bitesize Samples](#feedback)
 - ### [Other Samples](#other-samples-1)
   - [Boss Room](#boss-room-sample)
 
@@ -56,16 +41,18 @@ Check out the new [Dynamic Addressables Network Prefabs Sample](https://github.c
 ## Getting the project
 ### Direct download
 
- - You can download the latest versions these samples from our [Releases](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/releases) page
+ - This repository is public! Feel free to clone it, or download the contents as a `.zip` file.
 
- - __Alternatively:__ select `Code` and select the 'Download Zip' option.  Please note that this will download the branch you're currently viewing on Github
+ - __For Zipped File download:__ select `Code` and select the 'Download Zip' option.  Please note that this will download the branch you're currently viewing on Github
 <br><br>
 
 ## Requirements
 
-The bitesize samples are compatible with the latest Unity Long Term Support (LTS) editor version, currently [2021 LTS](https://unity.com/releases/2021-lts). Please include standalone support for Windows/Mac in your installation.
+This project is compatible with the Unity Long Term Support (LTS) editor version, [2021.3.XX LTS](https://unity.com/releases/2021-lts). Please include standalone support for Windows/Mac in your installation.
 
-**PLEASE NOTE:** You will also need Netcode for Game Objects to use these samples. Complete the [Hello World](https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld) tutorial to prepare your environment.
+**PLEASE NOTE:** <br>
+- When you first download the project, it will not automatically work using the services. Every developer must create a [Unity dashboard](dashboard.unity3d.com) project, and run through the necessary setup guides for [Game Server Hosting](https://docs.unity.com/game-server-hosting/en/manual/guides/get-started), and then [Matchmaker](https://docs.unity.com/matchmaker/en/manual/matchmaker-quick-start) as well.
+- You will also need Netcode for Game Objects to use these samples. Complete the [Hello World](https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld) tutorial to prepare your environment.
 <br><br>
 
 ## Troubleshooting
@@ -74,7 +61,7 @@ The bitesize samples are compatible with the latest Unity Long Term Support (LTS
 - Report NGO bugs using NGO Github [issues](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/issues)
 - Report Unity bugs using the [Unity bug submission process](https://unity3d.com/unity/qa/bug-reporting)
   
-### Documentation
+### Multiplayer Development Documentation
 For a deep dive into Netcode for GameObjects and the Bitesize Samples, visit our [documentation site](https://docs-multiplayer.unity3d.com/).
 <br><br>
 
@@ -82,15 +69,18 @@ For a deep dive into Netcode for GameObjects and the Bitesize Samples, visit our
 For help, questions, networking advice, or discussions about Netcode for GameObjects and its samples, please join our [Discord Community](https://discord.gg/FM8SE9E) or create a post in the [Unity Multiplayer Forum](https://forum.unity.com/forums/netcode-for-gameobjects.661/).
 <br><br>
 
-## Contributing
-We welcome your contributions to this sample code and objects. See our [contribution guidelines](CONTRIBUTING.md) for details.
-<br><br>
-
 ## Feedback
-If you have tried these samples already, please consider leaving us feedback [here](https://unitytech.typeform.com/bitesize)--it will only take a couple of minutes. Thanks!
+If you'd like to leave feedback for this sample, or the other bitesize samples, please consider leaving us feedback [here](https://unitytech.typeform.com/bitesize)--it will only take a couple of minutes. Thanks!
 <br><br>
 
 ## Other samples
+
+### MatchPlay Sample
+[MatchPlay](https://docs.unity.com/matchmaker/en/manual/matchmaker-and-multiplay-sample) demonstrates how to create a Matchmake button: a basic networked client-server game with a matchmaking feature from end-to-end using the Unity Engine and Cloud Services SDK.
+
+### Galactic Kittens
+[Galactic Kittens](https://github.com/UnityTechnologies/GalacticKittens) is a small 2D co-op space adventure sample game where players must blast off to space and defeat all of the possible enemies in a small time range.
+
 ### Boss Room Sample
 [Boss Room](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop/) is a fully functional co-op multiplayer RPG made with Unity Netcode. It is an educational sample designed to showcase typical netcode patterns that are frequently featured in similar multiplayer games.
 <br><br>
