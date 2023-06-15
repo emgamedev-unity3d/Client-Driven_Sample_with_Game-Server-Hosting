@@ -57,7 +57,7 @@ This project is compatible with the Unity Long Term Support (LTS) editor version
 
 ## Troubleshooting
 ### Bugs
-- Report bugs in the Bitesize samples using Github [issues](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/issues)
+- Report bugs in the `source` Bitesize samples repository using Github [issues](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/issues)
 - Report NGO bugs using NGO Github [issues](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/issues)
 - Report Unity bugs using the [Unity bug submission process](https://unity3d.com/unity/qa/bug-reporting)
   
