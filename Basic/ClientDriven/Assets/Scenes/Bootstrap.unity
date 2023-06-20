@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21890214, g: 0.16790506, b: 0.6703383, a: 1}
+  m_IndirectSpecularColor: {r: 0.21890238, g: 0.16790517, b: 0.6703396, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -392,7 +392,6 @@ GameObject:
   - component: {fileID: 466498887}
   - component: {fileID: 466498886}
   - component: {fileID: 466498890}
-  - component: {fileID: 466498891}
   m_Layer: 0
   m_Name: POV 1 - Red WITHOUT
   m_TagString: Untagged
@@ -513,24 +512,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _streamName: multiCam
   _credentials: {fileID: 11400000, guid: 92fce0c78ba1e48d7bd863b27db0f82c, type: 2}
+  _publishOnStart: 1
+  streamType: 0
+  videoSourceType: 0
+  _videoSourceCamera: {fileID: 466498888}
+  _videoSourceRenderTexture: {fileID: 0}
   _videoConfigData: {fileID: 11400000, guid: 3496b4cce569f461d97fd28a4f9c724f, type: 2}
   _useAudioListenerAsSource: 1
-  _videoSource: {fileID: 466498888}
   _audioSource: {fileID: 0}
-  _publishOnStart: 1
---- !u!114 &466498891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466498885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d503f6832421e44e0866d7b3ae35ca77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiSourceName: camOne
+  enableMultiSource: 1
+  _sourceId: camOne
 --- !u!1001 &474653826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -769,7 +760,6 @@ GameObject:
   - component: {fileID: 790346494}
   - component: {fileID: 790346493}
   - component: {fileID: 790346497}
-  - component: {fileID: 790346498}
   m_Layer: 0
   m_Name: POV 4 - Red WITH
   m_TagString: Untagged
@@ -890,24 +880,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _streamName: multiCam
   _credentials: {fileID: 11400000, guid: 92fce0c78ba1e48d7bd863b27db0f82c, type: 2}
+  _publishOnStart: 1
+  streamType: 0
+  videoSourceType: 0
+  _videoSourceCamera: {fileID: 790346495}
+  _videoSourceRenderTexture: {fileID: 0}
   _videoConfigData: {fileID: 11400000, guid: 3496b4cce569f461d97fd28a4f9c724f, type: 2}
   _useAudioListenerAsSource: 1
-  _videoSource: {fileID: 790346495}
   _audioSource: {fileID: 0}
-  _publishOnStart: 1
---- !u!114 &790346498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790346492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d503f6832421e44e0866d7b3ae35ca77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiSourceName: camFour
+  enableMultiSource: 1
+  _sourceId: camFour
 --- !u!1 &796975752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1459,6 @@ GameObject:
   - component: {fileID: 1314503023}
   - component: {fileID: 1314503022}
   - component: {fileID: 1314503026}
-  - component: {fileID: 1314503027}
   m_Layer: 0
   m_Name: POV 2 - Blue WITHOUT
   m_TagString: Untagged
@@ -1598,24 +1579,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _streamName: multiCam
   _credentials: {fileID: 11400000, guid: 92fce0c78ba1e48d7bd863b27db0f82c, type: 2}
+  _publishOnStart: 1
+  streamType: 0
+  videoSourceType: 0
+  _videoSourceCamera: {fileID: 1314503024}
+  _videoSourceRenderTexture: {fileID: 0}
   _videoConfigData: {fileID: 11400000, guid: 3496b4cce569f461d97fd28a4f9c724f, type: 2}
   _useAudioListenerAsSource: 1
-  _videoSource: {fileID: 1314503024}
   _audioSource: {fileID: 0}
-  _publishOnStart: 1
---- !u!114 &1314503027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314503021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d503f6832421e44e0866d7b3ae35ca77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiSourceName: camTwo
+  enableMultiSource: 1
+  _sourceId: camTwo
 --- !u!1 &1368949943 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2904161736621032748, guid: d793abe7ff9aa094eb534e73a82fdab5, type: 3}
@@ -1778,11 +1751,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _streamName: multiCam
   _credentials: {fileID: 11400000, guid: 92fce0c78ba1e48d7bd863b27db0f82c, type: 2}
+  _publishOnStart: 1
+  streamType: 0
+  videoSourceType: 0
+  _videoSourceCamera: {fileID: 1682981098}
+  _videoSourceRenderTexture: {fileID: 0}
   _videoConfigData: {fileID: 11400000, guid: 3496b4cce569f461d97fd28a4f9c724f, type: 2}
   _useAudioListenerAsSource: 1
-  _videoSource: {fileID: 1682981098}
   _audioSource: {fileID: 0}
-  _publishOnStart: 1
+  enableMultiSource: 0
+  _sourceId: Main Camera
 --- !u!1001 &1719355277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1916,7 +1894,6 @@ GameObject:
   - component: {fileID: 1801235282}
   - component: {fileID: 1801235281}
   - component: {fileID: 1801235285}
-  - component: {fileID: 1801235286}
   m_Layer: 0
   m_Name: POV 3 - Blue WITH
   m_TagString: Untagged
@@ -2037,24 +2014,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _streamName: multiCam
   _credentials: {fileID: 11400000, guid: 92fce0c78ba1e48d7bd863b27db0f82c, type: 2}
+  _publishOnStart: 1
+  streamType: 0
+  videoSourceType: 0
+  _videoSourceCamera: {fileID: 1801235283}
+  _videoSourceRenderTexture: {fileID: 0}
   _videoConfigData: {fileID: 11400000, guid: 3496b4cce569f461d97fd28a4f9c724f, type: 2}
   _useAudioListenerAsSource: 1
-  _videoSource: {fileID: 1801235283}
   _audioSource: {fileID: 0}
-  _publishOnStart: 1
---- !u!114 &1801235286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801235280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d503f6832421e44e0866d7b3ae35ca77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiSourceName: camThree
+  enableMultiSource: 1
+  _sourceId: camThree
 --- !u!1 &1826537006
 GameObject:
   m_ObjectHideFlags: 0

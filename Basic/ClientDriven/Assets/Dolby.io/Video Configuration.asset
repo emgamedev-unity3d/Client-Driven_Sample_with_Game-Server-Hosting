@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: Video Configuration
   m_EditorClassIdentifier: 
   codecType: 3
-  resolution: 1
+  resolution: 4
+  simulcast: 0
   qualitySettings:
     maxBitrate: 2500
     minBitrate: 500
     framerateOption: 60
     scaleDownOption: 1
+  simulcastLayers:
+    High:
+      maxBitrateKbps: 4000
+    Medium:
+      maxBitrateKbps: 900
+    Low:
+      maxBitrateKbps: 400
