@@ -1,12 +1,14 @@
 ![Banner](Basic/ClientDriven/Resources/clientdriven_banner.png)
 <br><br>
-# Client-Driven Bitesize Sample w/ Game Server Hosting & Matchmaker
+# Client-Driven Bitesize Sample w/ Game Server Hosting & Matchmaker & Dolby.io Streaming
 
 [![UnityVersion](https://img.shields.io/badge/Unity%20Version:-2021.3%20LTS-57b9d3.svg?logo=unity&color=2196F3)](https://unity.com/releases/editor/qa/lts-releases#:~:text=February%2014%2C%202023-,LTS%20Release,2021.3.24f1,-Released%3A%20February)
 [![NetcodeVersion](https://img.shields.io/badge/Netcode%20Version:-1.3.1-57b9d3.svg?logo=unity&color=2196F3)](https://docs-multiplayer.unity3d.com/netcode/current/about)
 <br><br>
 
-This repository is a fork of Unity's [bitesize samples repository](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize), which are built with our netcode solution, [Netcode for GameObjects](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects). This copy is a fun project to help us answer the question of what challenges does a developer face, when they'd like to implementing Game Server Hosting(Multiplay) and Matchmaker, to their multiplayer game made with Netcode for GameObjects.
+This repository is a fork of Unity's [bitesize samples repository](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize), which are built with our netcode solution, [Netcode for GameObjects](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects). This copy is a fun project to help us answer the question of what challenges a developer face when they'd like to implement Game Server Hosting (Multiplay) and Matchmaker, to their multiplayer game made with Netcode for GameObjects.
+
+In this branch, the Dolby.io Streaming Unity plugin has been added where the audience can watch a four-camera set-up in a multiview layout. This is a low-code solution that allows developers to add as many virtual cameras as they desire, all under a single stream. With the plugin, you have the power to stream a video inside the Playground or stream out any chosen camera. In addition, select the resolution, bitrate, codec, and more. Press play and click on this link to see the multiview: https://viewer.millicast.com/?streamId=GCNQRh/multiCam.
 
 The code you'll see in this sample is based on Unity's own [Matchplay Sample](https://docs.unity.com/matchmaker/en/manual/matchmaker-and-multiplay-sample), which demonstrates how to create a Matchmake button, a basic networked client-server game with a matchmaking feature from end-to-end using the Unity Engine and Cloud Services SDK.
 
@@ -43,7 +45,7 @@ See the [Client Driven Sample](https://github.com/Unity-Technologies/com.unity.m
 
  - This repository is public! Feel free to clone it, or download the contents as a `.zip` file.
 
- - __For Zipped File download:__ select `Code` and select the 'Download Zip' option.  Please note that this will download the branch you're currently viewing on Github
+ - __For Zipped File download:__ select `Code` and select the 'Download Zip' option.  Please note that this will download the branch you're currently viewing on GitHub
 <br><br>
 
 ## Requirements
@@ -55,15 +57,22 @@ This project is compatible with the Unity Long Term Support (LTS) editor version
 - You will also need Netcode for Game Objects to use these samples. Complete the [Hello World](https://docs-multiplayer.unity3d.com/netcode/current/tutorials/helloworld) tutorial to prepare your environment.
 <br><br>
 
+The Dolby.io Unity Streaming plugin needs these requirements in order to work:
+- Editor Version: Unity 2019.4, 2020.3, 2021.3 or higher
+- Development Platform: Windows, Linux, MacOS (Intel and Apple Silicon)
+- Target Platform: Desktop
+- Pending Support: iOS and Android (ARM64 and ARMv7)
+
 ## Troubleshooting
 ### Bugs
 - Report bugs in the `source` Bitesize samples repository using Github [issues](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.bitesize/issues)
 - Report NGO bugs using NGO Github [issues](https://github.com/Unity-Technologies/com.unity.netcode.gameobjects/issues)
 - Report Unity bugs using the [Unity bug submission process](https://unity3d.com/unity/qa/bug-reporting)
   
-### Multiplayer Development Documentation
+### Documentation
 For a deep dive into Netcode for GameObjects and the Bitesize Samples, visit our [documentation site](https://docs-multiplayer.unity3d.com/).
 <br><br>
+For more information on Dolby.io, visit our [documentation page](https://docs.dolby.io/streaming-apis/docs/unity-getting-started) or [our blog session dedicated to Unity content](https://dolby.io/search/?_search=unity).
 
 ## Community
 For help, questions, networking advice, or discussions about Netcode for GameObjects and its samples, please join our [Discord Community](https://discord.gg/FM8SE9E) or create a post in the [Unity Multiplayer Forum](https://forum.unity.com/forums/netcode-for-gameobjects.661/).
